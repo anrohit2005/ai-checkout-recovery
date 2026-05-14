@@ -3,7 +3,22 @@ import { useState } from "react"
 function CheckoutForm({ setAiMessage }) {
 
   const [coupon, setCoupon] = useState("")
+  const [paymentChanges, setPaymentChanges] = useState(0)
+const handlePaymentChange = () => {
 
+  const newCount = paymentChanges + 1
+
+  setPaymentChanges(newCount)
+
+  if (newCount >= 3) {
+
+    setAiMessage(
+      "Having payment trouble? Cash on Delivery may be easier."
+    )
+
+  }
+
+}
   const handleCouponChange = (e) => {
 
     const value = e.target.value
@@ -43,8 +58,9 @@ function CheckoutForm({ setAiMessage }) {
         />
 
         <select
-          className="border p-5 rounded-xl text-xl"
-        >
+  onChange={handlePaymentChange}
+  className="border p-5 rounded-xl text-xl"
+>
 
           <option>
             Cash on Delivery
