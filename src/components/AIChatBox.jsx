@@ -1,24 +1,4 @@
-import { useEffect, useState } from "react"
-
-function AIChatBox() {
-
-  const [message, setMessage] = useState(
-    "Need help with coupons, shipping, or payment?"
-  )
-
-  useEffect(() => {
-
-    const timer = setTimeout(() => {
-
-      setMessage(
-        "Having trouble completing checkout? I can help."
-      )
-
-    }, 15000)
-
-    return () => clearTimeout(timer)
-
-  }, [])
+function AIChatBox({ message }) {
 
   return (
 

@@ -1,30 +1,35 @@
+import { useState } from "react"
+
 import CheckoutForm from "../components/CheckoutForm"
 import AIChatBox from "../components/AIChatBox"
 import OrderSummary from "../components/OrderSummary"
 
-function Checkout(){
+function Checkout() {
+
+  const [aiMessage, setAiMessage] = useState(
+    "Need help with coupons, shipping, or payment?"
+  )
+
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="min-h-screen bg-gray-100 p-10">
 
-        {/* Left Section */}
-        <div className="md:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-          <CheckoutForm/>
+        <div className="lg:col-span-2">
 
-          <OrderSummary/>
+          <CheckoutForm setAiMessage={setAiMessage} />
+
+          <OrderSummary />
 
         </div>
 
-        {/* Right Section */}
-        <div>
-          <AIChatBox />
-        </div>
+        <AIChatBox message={aiMessage} />
 
       </div>
-      
+
     </div>
   )
 }
+
 export default Checkout

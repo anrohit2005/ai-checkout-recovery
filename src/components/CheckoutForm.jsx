@@ -1,42 +1,80 @@
-function CheckoutForm() {
-  return (
-    <div className="bg-white rounded-2xl shadow-lg p-6">
+import { useState } from "react"
 
-      <h1 className="text-3xl font-bold mb-6">
+function CheckoutForm({ setAiMessage }) {
+
+  const [coupon, setCoupon] = useState("")
+
+  const handleCouponChange = (e) => {
+
+    const value = e.target.value
+
+    setCoupon(value)
+
+    if (value === "SAVE50") {
+
+      setAiMessage(
+        "That coupon is invalid. Try SAVE10 for 10% off."
+      )
+
+    }
+
+  }
+
+  return (
+
+    <div className="bg-white rounded-2xl shadow-lg p-8">
+
+      <h1 className="text-5xl font-bold mb-10">
         Checkout
       </h1>
 
-      <input
-        type="text"
-        placeholder="Full Name"
-        className="w-full border p-3 rounded-xl mb-4"
-      />
+      <div className="flex flex-col gap-6">
 
-      <input
-        type="text"
-        placeholder="Address"
-        className="w-full border p-3 rounded-xl mb-4"
-      />
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="border p-5 rounded-xl text-xl"
+        />
 
-      <select
-        className="w-full border p-3 rounded-xl mb-4"
-      >
-        <option>Cash on Delivery</option>
-        <option>UPI</option>
-        <option>Credit Card</option>
-      </select>
+        <input
+          type="text"
+          placeholder="Address"
+          className="border p-5 rounded-xl text-xl"
+        />
 
-      <input
-        type="text"
-        placeholder="Coupon Code"
-        className="w-full border p-3 rounded-xl mb-4"
-      />
+        <select
+          className="border p-5 rounded-xl text-xl"
+        >
 
-      <button
-        className="w-full bg-black text-white py-3 rounded-xl"
-      >
-        Place Order
-      </button>
+          <option>
+            Cash on Delivery
+          </option>
+
+          <option>
+            UPI
+          </option>
+
+          <option>
+            Credit Card
+          </option>
+
+        </select>
+
+        <input
+          type="text"
+          placeholder="Coupon Code"
+          value={coupon}
+          onChange={handleCouponChange}
+          className="border p-5 rounded-xl text-xl"
+        />
+
+        <button
+          className="bg-black text-white p-5 rounded-xl text-xl"
+        >
+          Place Order
+        </button>
+
+      </div>
 
     </div>
   )
